@@ -4,10 +4,11 @@ var path = require('path')
 
 module.exports = function (babel) {
   
-  const newFunction = babel.template.statement.ast(
+  const newFunction = babel.template.ast(
+    
     `async () =>  {
 
-        const result = (await axios.get(path.resolve('./api/gatsby-func'))).data;
+        const result = (await axios.get(path.resolve('../src/api/gatsby-func'))).data;
         return result
 
     }`
