@@ -2,15 +2,13 @@
 const axios = require('axios')
 var path = require('path')
 
-var url =  "../src/api/gatsby-func"
-
 module.exports = function (babel) {
   
   const newFunction = babel.template.statement.ast(
-    `async (req, res) =>  {
+    `async () =>  {
 
-        const result = (await axios.get('../src/api/gatsby-func')).data;
-        return res.json(result)
+        const result = (await axios.get(path.resolve('./api/gatsby-func'))).data;
+        return result
 
     }`
   );
@@ -19,7 +17,7 @@ module.exports = function (babel) {
     name: "gatsby-function", // not required
     visitor: {
       ArrowFunctionExpression(path) {
-        if (path.parent.callee && path.parent.callee.name === "useGet") {
+        if (path.parent.callee && path.parent.callee.name === "useGet" ) {
           path.replaceWith(
             newFunction
           );
@@ -28,3 +26,5 @@ module.exports = function (babel) {
     }
   };
 };
+
+// && path.container[0].body.body[0].argument.extra.rawValue !== "Hello"

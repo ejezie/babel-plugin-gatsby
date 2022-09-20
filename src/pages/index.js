@@ -9,7 +9,7 @@ const IndexPage = () => {
 
   console.log(data, loading, "*****")
 
-  return <h1>{data}</h1>
+  return <h1>{data.toString()}</h1>
 }
 
 export default IndexPage

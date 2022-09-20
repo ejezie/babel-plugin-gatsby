@@ -11,7 +11,7 @@ const NotFoundPage = () => {
     return "Hello"
   }, [])
 
-  return <h1>{data}</h1>
+  return <h1>{data.toString()}</h1>
 }
 
 export default NotFoundPage
