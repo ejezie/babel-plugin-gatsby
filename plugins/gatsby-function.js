@@ -1,13 +1,16 @@
 
 const axios = require('axios')
+var path = require('path')
+
+var url =  "../src/api/gatsby-func"
 
 module.exports = function (babel) {
   
   const newFunction = babel.template.statement.ast(
     `async (req, res) =>  {
 
-        const listofUsers = (await axios.get('https://official-joke-api.appspot.com/random_joke')).data;
-        return res.json(listOfUsers)
+        const result = (await axios.get('../src/api/gatsby-func')).data;
+        return res.json(result)
 
     }`
   );
